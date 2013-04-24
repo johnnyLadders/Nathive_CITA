@@ -96,6 +96,9 @@ class Brush(PluginTool):
 
 
     def new(self):
+        
+        #regenerate pre computed softness mask
+        #        self.generateSoftnessMask()
 
         del(self.brush)
         self.brush = Layer('brush', None, self.size, self.size)
@@ -116,6 +119,7 @@ class Brush(PluginTool):
         fixed_size = self.size - ((self.size * (self.soft/2) / 100) / 2)
         if self.shape == 0: hud.set_cursor('square', fixed_size)
         elif self.shape == 1: hud.set_cursor('circle', fixed_size)
+        
 
 
     def new_color(self):
@@ -241,7 +245,7 @@ class Brush(PluginTool):
             1,
             100,
             self.size,
-            lambda x: self.set_then_new('size', int(x)))
+            self.updateSize)
 
         self.gui_soft = MultiWidgetSpin(
             self.box,
@@ -259,7 +263,7 @@ class Brush(PluginTool):
             1,
             100,
             self.opacity,
-            lambda x: self.set_then_new('opacity', int(x)))
+            self.updateOpacity)
 
         gutils.separator(self.box)
 
@@ -306,21 +310,21 @@ class Brush(PluginTool):
                 self.layer.pixData[pixel].append([main.color.hex,opacity])
     
     def updateSoftness(self,softness):
-        print softness
-        self.soft = softness
-#        self.generateSoftnessMask()
+        self.soft = int(softness)
+        self.new()
+
     
-#    def updateOpacity(self,opacity):
-#        print "opacity"
-#        self.opacity = opacity
-#        self.generateSoftnessMask()
-#    
-#    def updateSize(self,size):
-#        print "size"
-#        self.size = size
-#        self.generateSoftnessMask()
-#        
-#        
+    def updateOpacity(self,opacity):
+        self.opacity = int(opacity)
+        self.new()
+
+    
+    def updateSize(self,size):
+        self.size = int(size)
+        self.new()
+
+        
+        
 #    def generateSoftnessMask(self):
 #        for row in range(self.brush.height):
 #            tempRow = []
