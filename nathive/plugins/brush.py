@@ -44,6 +44,7 @@ class Brush(PluginTool):
         self.color_updated_todo = main.color.updated_todo
 
 
+
     def enable(self):
 
         self.color_updated_todo.append(self.new_color)

@@ -11,6 +11,7 @@
 
 import pygtk
 import gtk
+import traceback
 
 from nathive.gui.menubar import Menubar
 from nathive.gui.headbar import Headbar
@@ -18,6 +19,7 @@ from nathive.gui.toolbar import Toolbar
 from nathive.gui.tabs import Tabs
 from nathive.gui.sidebar import Sidebar
 from nathive.gui.colorbar import Colorbar
+from nathive.gui.colorDictionary import ColorDictionary
 from nathive.gui.statusbar import Statusbar
 from nathive.gui.cursor import Cursor
 
@@ -66,6 +68,7 @@ class Main(object):
         self.tabs = Tabs(hbox)
         self.sidebar = Sidebar(hbox)
         self.colorbar = Colorbar(hbox)
+        self.colorDictionary = ColorDictionary(hbox)
         vbox.pack_start(hbox, True, True, 0)
 
         # Bottom section.
