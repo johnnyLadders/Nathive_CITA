@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Terminal=false
+Exec=nathive
+Name=Nathive image editor
+Comment=NULL
+Name[es]= Editor de imágenes Nathive
+Comment[es]=Edite imágenes y fotografías fácilmente
+Icon=/usr/share/nathive/img/icon.png
+Categories=Application;Graphics;

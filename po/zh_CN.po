@@ -1,0 +1,391 @@
+# GETTEXT PORTABLE OBJECT
+# Chinese translation for nathive
+# This file is distributed under the same license as the nathive package.
+msgid ""
+msgstr ""
+"Project-Id-Version: nathive\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-13 23:37+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: nathive/plugins/view-fullscreen.py:26
+msgid "Fullscreen"
+msgstr "全屏"
+
+#: nathive/plugins/clip-copy.py:26
+msgid "Copy"
+msgstr ""
+
+#: nathive/plugins/about.py:30 nathive/plugins/about.py:54
+msgid "About"
+msgstr "关于"
+
+#: nathive/plugins/about.py:59
+msgid "Credits"
+msgstr "致谢"
+
+#: nathive/plugins/about.py:64
+msgid "License"
+msgstr "许可"
+
+#: nathive/plugins/preferences.py:31
+msgid "Preferences"
+msgstr "首选项"
+
+#: nathive/plugins/preferences.py:49
+msgid "General"
+msgstr ""
+
+#: nathive/plugins/preferences.py:56
+msgid "Arrange"
+msgstr ""
+
+#: nathive/plugins/preferences.py:63
+msgid "Plugins"
+msgstr ""
+
+#: nathive/plugins/preferences.py:82 nathive/plugins/saveas.py:129
+msgid "Automatic"
+msgstr ""
+
+#: nathive/plugins/preferences.py:91
+msgid "Language"
+msgstr ""
+
+#: nathive/plugins/preferences.py:102
+msgid "Tab max length"
+msgstr ""
+
+#: nathive/plugins/preferences.py:123 nathive/plugins/view-headbar.py:26
+msgid "Headbar"
+msgstr ""
+
+#: nathive/plugins/preferences.py:124
+msgid "Toolbar"
+msgstr ""
+
+#: nathive/plugins/preferences.py:125 nathive/gui/menubar.py:32
+msgid "File"
+msgstr "文件"
+
+#: nathive/plugins/preferences.py:126 nathive/gui/menubar.py:33
+msgid "Edit"
+msgstr "编辑"
+
+#: nathive/plugins/preferences.py:127 nathive/gui/menubar.py:34
+msgid "View"
+msgstr "视图"
+
+#: nathive/plugins/preferences.py:128 nathive/gui/menubar.py:35
+msgid "Help"
+msgstr "帮助"
+
+#: nathive/plugins/preferences.py:131
+msgid "Sort group"
+msgstr ""
+
+#: nathive/plugins/preferences.py:206 nathive/plugins/preferences.py:276
+msgid "Separator"
+msgstr ""
+
+#: nathive/plugins/preferences.py:207
+msgid "New items"
+msgstr ""
+
+#: nathive/plugins/console.py:34 nathive/plugins/console.py:59
+msgid "Console"
+msgstr ""
+
+#: nathive/plugins/view-colorbar.py:26
+msgid "Colorbar"
+msgstr ""
+
+#: nathive/plugins/open.py:30
+msgid "Open"
+msgstr "打开"
+
+#: nathive/plugins/open.py:54 nathive/plugins/saveas.py:63
+#: nathive/plugins/paste-file.py:54
+msgid "Preview"
+msgstr "Preview"
+
+#: nathive/plugins/crop.py:307
+msgid "X offset"
+msgstr ""
+
+#: nathive/plugins/crop.py:316
+msgid "Y offset"
+msgstr ""
+
+#: nathive/plugins/crop.py:325 nathive/plugins/new.py:176
+msgid "Width"
+msgstr "宽度"
+
+#: nathive/plugins/crop.py:334 nathive/plugins/new.py:177
+msgid "Height"
+msgstr "高度"
+
+#: nathive/plugins/save.py:30
+msgid "Save"
+msgstr "保存"
+
+#: nathive/plugins/quit.py:26
+msgid "Quit"
+msgstr ""
+
+#: nathive/plugins/saveas.py:36
+msgid "Save as"
+msgstr ""
+
+#: nathive/plugins/saveas.py:153 nathive/plugins/saveas.py:157
+msgid "Format"
+msgstr ""
+
+#: nathive/plugins/saveas.py:153 nathive/plugins/select.py:410
+msgid "Quality"
+msgstr ""
+
+#: nathive/plugins/saveas.py:256
+#, python-format
+msgid "«%s» already exists"
+msgstr ""
+
+#: nathive/plugins/saveas.py:257
+msgid "Overwrite will replace the old image with the new one."
+msgstr ""
+
+#: nathive/plugins/saveas.py:261
+msgid "Overwrite"
+msgstr ""
+
+#: nathive/plugins/saveas.py:269
+msgid "Extension is wrong"
+msgstr ""
+
+#: nathive/plugins/saveas.py:270
+msgid "Change the format or file extension."
+msgstr ""
+
+#: nathive/plugins/paste-file.py:30
+msgid "Paste from file"
+msgstr ""
+
+#: nathive/plugins/clip-paste.py:26
+msgid "Paste"
+msgstr ""
+
+#: nathive/plugins/redo.py:26
+msgid "Redo"
+msgstr ""
+
+#: nathive/plugins/view-sidebar.py:26
+msgid "Sidebar"
+msgstr "侧边栏"
+
+#: nathive/plugins/new.py:35 nathive/lib/layers.py:73
+msgid "New"
+msgstr "新建"
+
+#: nathive/plugins/new.py:73
+msgid "Units"
+msgstr "单位"
+
+#: nathive/plugins/new.py:74 nathive/gui/statusbar.py:31
+msgid "Pixels"
+msgstr "像素"
+
+#: nathive/plugins/new.py:74
+msgid "Centimeters"
+msgstr "厘米"
+
+#: nathive/plugins/new.py:74
+msgid "Inches"
+msgstr "英寸"
+
+#: nathive/plugins/new.py:101
+msgid "Resolution"
+msgstr "分辨率"
+
+#: nathive/plugins/undo.py:26
+msgid "Undo"
+msgstr ""
+
+#: nathive/plugins/home.py:30
+msgid "Nathive website"
+msgstr "Nathive 网站"
+
+#: nathive/plugins/brush.py:219
+msgid "Shape"
+msgstr "形状"
+
+#: nathive/plugins/brush.py:228
+msgid "Size"
+msgstr "大小"
+
+#: nathive/plugins/brush.py:237
+msgid "Smoothing"
+msgstr "平滑"
+
+#: nathive/plugins/brush.py:246
+msgid "Opacity"
+msgstr "不透明"
+
+#: nathive/plugins/brush.py:257
+msgid "Spacing"
+msgstr "间隔"
+
+#: nathive/plugins/clip-cut.py:26
+msgid "Cut"
+msgstr ""
+
+#: nathive/plugins/select.py:409
+msgid "Scaling"
+msgstr ""
+
+#: nathive/plugins/select.py:410
+msgid "Fast"
+msgstr ""
+
+#: nathive/plugins/select.py:410
+msgid "Normal"
+msgstr "正常"
+
+#: nathive/plugins/preset-manager.py:34
+msgid "Preset manager"
+msgstr ""
+
+#: nathive/plugins/preset-manager.py:63
+msgid "Plugin"
+msgstr ""
+
+#: nathive/plugins/close.py:26
+msgid "Close"
+msgstr ""
+
+#: nathive/lib/document.py:55
+msgid "Original"
+msgstr ""
+
+#: nathive/lib/layers.py:93
+msgid "Imported"
+msgstr ""
+
+#: nathive/lib/layers.py:104 nathive/lib/layers.py:116
+msgid "Pasted"
+msgstr ""
+
+#: nathive/gui/multiwidget/presets.py:32
+msgid "Presets"
+msgstr ""
+
+#: nathive/gui/multiwidget/presets.py:44 nathive/gui/multiwidget/clear.py:27
+msgid "Restore default values"
+msgstr "还原默认值"
+
+#: nathive/gui/multiwidget/presets.py:54
+msgid "Manage presets"
+msgstr ""
+
+#: nathive/gui/multiwidget/presets.py:63
+msgid "Save the current values as a new preset"
+msgstr ""
+
+#: nathive/gui/multiwidget/presets.py:71
+msgid "Show available presets"
+msgstr ""
+
+#: nathive/gui/tabs.py:111
+msgid "Unsaved"
+msgstr "未保存"
+
+#: nathive/gui/sidebar_color.py:36
+msgid "Red"
+msgstr "红"
+
+#: nathive/gui/sidebar_color.py:46
+msgid "Green"
+msgstr "绿"
+
+#: nathive/gui/sidebar_color.py:56
+msgid "Blue"
+msgstr "蓝"
+
+#: nathive/gui/sidebar_color.py:69
+msgid "Hue"
+msgstr "色调"
+
+#: nathive/gui/sidebar_color.py:79
+msgid "Saturation"
+msgstr "饱和度"
+
+#: nathive/gui/sidebar_color.py:89
+msgid "Value"
+msgstr "纯度"
+
+#: nathive/gui/sidebar_color.py:101
+msgid "Hexadecimal"
+msgstr "十六进制"
+
+#: nathive/gui/sidebar.py:38
+msgid "Color"
+msgstr "颜色"
+
+#: nathive/gui/sidebar.py:42
+msgid "Objects"
+msgstr "对象"
+
+#~ msgid "Constant"
+#~ msgstr "常量"
+
+#~ msgid "Variable"
+#~ msgstr "变量"
+
+#~ msgid "Idle"
+#~ msgstr "空闲"
+
+#~ msgid "Dots/inche"
+#~ msgstr "点/英寸"
+
+#~ msgid "No background"
+#~ msgstr "无背景"
+
+#~ msgid "Version"
+#~ msgstr "版本"
+
+#~ msgid "Template"
+#~ msgstr "模板"
+
+#~ msgid "CD cover"
+#~ msgstr "CD 封面"
+
+#~ msgid "DVD cover"
+#~ msgstr "DVD 封面"
+
+#~ msgid "Very high"
+#~ msgstr "很高"
+
+#~ msgid "High"
+#~ msgstr "高"
+
+#~ msgid "Low"
+#~ msgstr "低"
+
+#~ msgid "Very low"
+#~ msgstr "很低"
+
+#~ msgid "Brush size"
+#~ msgstr "笔刷大小"
+
+#~ msgid "Rotate 90º"
+#~ msgstr "旋转 90º"
+
+#~ msgid "Get 50%"
+#~ msgstr "缩小 50%"
+
+#~ msgid "Get 200%"
+#~ msgstr "放大 200%"
+
+#~ msgid "Moving object"
+#~ msgstr "Moving object"

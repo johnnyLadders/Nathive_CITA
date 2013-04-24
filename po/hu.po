@@ -1,0 +1,391 @@
+# GETTEXT PORTABLE OBJECT
+# Hungarian translation for nathive
+# This file is distributed under the same license as the nathive package.
+msgid ""
+msgstr ""
+"Project-Id-Version: nathive\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-13 23:37+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: nathive/plugins/view-fullscreen.py:26
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
+
+#: nathive/plugins/clip-copy.py:26
+msgid "Copy"
+msgstr "Másolás"
+
+#: nathive/plugins/about.py:30 nathive/plugins/about.py:54
+msgid "About"
+msgstr "Programról"
+
+#: nathive/plugins/about.py:59
+msgid "Credits"
+msgstr "Köszönet"
+
+#: nathive/plugins/about.py:64
+msgid "License"
+msgstr "Licensz"
+
+#: nathive/plugins/preferences.py:31
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: nathive/plugins/preferences.py:49
+msgid "General"
+msgstr "Általános"
+
+#: nathive/plugins/preferences.py:56
+msgid "Arrange"
+msgstr "Elrendezés"
+
+#: nathive/plugins/preferences.py:63
+msgid "Plugins"
+msgstr "Modulok"
+
+#: nathive/plugins/preferences.py:82 nathive/plugins/saveas.py:129
+msgid "Automatic"
+msgstr "Automatikus"
+
+#: nathive/plugins/preferences.py:91
+msgid "Language"
+msgstr "Nyelvek"
+
+#: nathive/plugins/preferences.py:102
+msgid "Tab max length"
+msgstr "Fül max. hossza"
+
+#: nathive/plugins/preferences.py:123 nathive/plugins/view-headbar.py:26
+msgid "Headbar"
+msgstr "Fejléc"
+
+#: nathive/plugins/preferences.py:124
+msgid "Toolbar"
+msgstr "Eszköztár"
+
+#: nathive/plugins/preferences.py:125 nathive/gui/menubar.py:32
+msgid "File"
+msgstr "Fájl"
+
+#: nathive/plugins/preferences.py:126 nathive/gui/menubar.py:33
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: nathive/plugins/preferences.py:127 nathive/gui/menubar.py:34
+msgid "View"
+msgstr "Nézet"
+
+#: nathive/plugins/preferences.py:128 nathive/gui/menubar.py:35
+msgid "Help"
+msgstr "Súgó"
+
+#: nathive/plugins/preferences.py:131
+msgid "Sort group"
+msgstr "Csoport rendezése"
+
+#: nathive/plugins/preferences.py:206 nathive/plugins/preferences.py:276
+msgid "Separator"
+msgstr "Elválasztó"
+
+#: nathive/plugins/preferences.py:207
+msgid "New items"
+msgstr "Új elemek"
+
+#: nathive/plugins/console.py:34 nathive/plugins/console.py:59
+msgid "Console"
+msgstr "Konzol"
+
+#: nathive/plugins/view-colorbar.py:26
+msgid "Colorbar"
+msgstr "Színsor"
+
+#: nathive/plugins/open.py:30
+msgid "Open"
+msgstr "Megnyitás"
+
+#: nathive/plugins/open.py:54 nathive/plugins/saveas.py:63
+#: nathive/plugins/paste-file.py:54
+msgid "Preview"
+msgstr "Preview"
+
+#: nathive/plugins/crop.py:307
+msgid "X offset"
+msgstr "X eltolás"
+
+#: nathive/plugins/crop.py:316
+msgid "Y offset"
+msgstr "Y eltolás"
+
+#: nathive/plugins/crop.py:325 nathive/plugins/new.py:176
+msgid "Width"
+msgstr "Szélesség"
+
+#: nathive/plugins/crop.py:334 nathive/plugins/new.py:177
+msgid "Height"
+msgstr "Magasság"
+
+#: nathive/plugins/save.py:30
+msgid "Save"
+msgstr "Mentés"
+
+#: nathive/plugins/quit.py:26
+msgid "Quit"
+msgstr "Kilépés"
+
+#: nathive/plugins/saveas.py:36
+msgid "Save as"
+msgstr "Mentés másként..."
+
+#: nathive/plugins/saveas.py:153 nathive/plugins/saveas.py:157
+msgid "Format"
+msgstr "Formátum"
+
+#: nathive/plugins/saveas.py:153 nathive/plugins/select.py:410
+msgid "Quality"
+msgstr "Minőség"
+
+#: nathive/plugins/saveas.py:256
+#, python-format
+msgid "«%s» already exists"
+msgstr "«%s» már létezik"
+
+#: nathive/plugins/saveas.py:257
+msgid "Overwrite will replace the old image with the new one."
+msgstr "Felülírással lecseréli a régi képet az újra."
+
+#: nathive/plugins/saveas.py:261
+msgid "Overwrite"
+msgstr "Felülírás"
+
+#: nathive/plugins/saveas.py:269
+msgid "Extension is wrong"
+msgstr "Rossz kiterjesztés"
+
+#: nathive/plugins/saveas.py:270
+msgid "Change the format or file extension."
+msgstr "Változtassa meg a formátumot vagy a kiterjesztést."
+
+#: nathive/plugins/paste-file.py:30
+msgid "Paste from file"
+msgstr "Beillesztés fájlból"
+
+#: nathive/plugins/clip-paste.py:26
+msgid "Paste"
+msgstr "Beillesztés"
+
+#: nathive/plugins/redo.py:26
+msgid "Redo"
+msgstr "Újra"
+
+#: nathive/plugins/view-sidebar.py:26
+msgid "Sidebar"
+msgstr "Oldalpanel"
+
+#: nathive/plugins/new.py:35 nathive/lib/layers.py:73
+msgid "New"
+msgstr "Új"
+
+#: nathive/plugins/new.py:73
+msgid "Units"
+msgstr "Mértékegység"
+
+#: nathive/plugins/new.py:74 nathive/gui/statusbar.py:31
+msgid "Pixels"
+msgstr "Pixel"
+
+#: nathive/plugins/new.py:74
+msgid "Centimeters"
+msgstr "Centiméter"
+
+#: nathive/plugins/new.py:74
+msgid "Inches"
+msgstr "Col"
+
+#: nathive/plugins/new.py:101
+msgid "Resolution"
+msgstr "Felbontás"
+
+#: nathive/plugins/undo.py:26
+msgid "Undo"
+msgstr "Vissza"
+
+#: nathive/plugins/home.py:30
+msgid "Nathive website"
+msgstr "Nathive weboldala"
+
+#: nathive/plugins/brush.py:219
+msgid "Shape"
+msgstr "Alakzat"
+
+#: nathive/plugins/brush.py:228
+msgid "Size"
+msgstr "Méret"
+
+#: nathive/plugins/brush.py:237
+msgid "Smoothing"
+msgstr "Simítás"
+
+#: nathive/plugins/brush.py:246
+msgid "Opacity"
+msgstr "Áttetszőség"
+
+#: nathive/plugins/brush.py:257
+msgid "Spacing"
+msgstr "Térköz"
+
+#: nathive/plugins/clip-cut.py:26
+msgid "Cut"
+msgstr "Vágás"
+
+#: nathive/plugins/select.py:409
+msgid "Scaling"
+msgstr "Méretezés"
+
+#: nathive/plugins/select.py:410
+msgid "Fast"
+msgstr "Gyors"
+
+#: nathive/plugins/select.py:410
+msgid "Normal"
+msgstr "Normál"
+
+#: nathive/plugins/preset-manager.py:34
+msgid "Preset manager"
+msgstr "Profil kezelő"
+
+#: nathive/plugins/preset-manager.py:63
+msgid "Plugin"
+msgstr "Modul"
+
+#: nathive/plugins/close.py:26
+msgid "Close"
+msgstr "Bezárás"
+
+#: nathive/lib/document.py:55
+msgid "Original"
+msgstr "Eredeti"
+
+#: nathive/lib/layers.py:93
+msgid "Imported"
+msgstr "Importált"
+
+#: nathive/lib/layers.py:104 nathive/lib/layers.py:116
+msgid "Pasted"
+msgstr "Beillesztett"
+
+#: nathive/gui/multiwidget/presets.py:32
+msgid "Presets"
+msgstr "Profilok"
+
+#: nathive/gui/multiwidget/presets.py:44 nathive/gui/multiwidget/clear.py:27
+msgid "Restore default values"
+msgstr "Alapértelmezett értékek helyreállítása"
+
+#: nathive/gui/multiwidget/presets.py:54
+msgid "Manage presets"
+msgstr "Profilok kezelése"
+
+#: nathive/gui/multiwidget/presets.py:63
+msgid "Save the current values as a new preset"
+msgstr "A jelenlegi értékek mentése új beállításként"
+
+#: nathive/gui/multiwidget/presets.py:71
+msgid "Show available presets"
+msgstr "Elérhető beállítások megjelenítése"
+
+#: nathive/gui/tabs.py:111
+msgid "Unsaved"
+msgstr "Nem mentett"
+
+#: nathive/gui/sidebar_color.py:36
+msgid "Red"
+msgstr "Piros"
+
+#: nathive/gui/sidebar_color.py:46
+msgid "Green"
+msgstr "Zöld"
+
+#: nathive/gui/sidebar_color.py:56
+msgid "Blue"
+msgstr "Kék"
+
+#: nathive/gui/sidebar_color.py:69
+msgid "Hue"
+msgstr "Kontraszt"
+
+#: nathive/gui/sidebar_color.py:79
+msgid "Saturation"
+msgstr "Fényerő"
+
+#: nathive/gui/sidebar_color.py:89
+msgid "Value"
+msgstr "Érték"
+
+#: nathive/gui/sidebar_color.py:101
+msgid "Hexadecimal"
+msgstr "Hexadecimális"
+
+#: nathive/gui/sidebar.py:38
+msgid "Color"
+msgstr "Szín"
+
+#: nathive/gui/sidebar.py:42
+msgid "Objects"
+msgstr "Objektumok"
+
+#~ msgid "Constant"
+#~ msgstr "Állandó"
+
+#~ msgid "Variable"
+#~ msgstr "Változó"
+
+#~ msgid "Idle"
+#~ msgstr "Folyamatban"
+
+#~ msgid "Dots/inche"
+#~ msgstr "Dots/inche"
+
+#~ msgid "No background"
+#~ msgstr "No background"
+
+#~ msgid "Version"
+#~ msgstr "Version"
+
+#~ msgid "Template"
+#~ msgstr "Sablon"
+
+#~ msgid "CD cover"
+#~ msgstr "CD borító"
+
+#~ msgid "DVD cover"
+#~ msgstr "DVD borító"
+
+#~ msgid "Very high"
+#~ msgstr "Nagyon magas"
+
+#~ msgid "High"
+#~ msgstr "Magas"
+
+#~ msgid "Low"
+#~ msgstr "Alacsony"
+
+#~ msgid "Very low"
+#~ msgstr "Nagyon alacsony"
+
+#~ msgid "Brush size"
+#~ msgstr "Ecset méret"
+
+#~ msgid "Rotate 90º"
+#~ msgstr "Rotate 90º"
+
+#~ msgid "Get 50%"
+#~ msgstr "Get 50%"
+
+#~ msgid "Get 200%"
+#~ msgstr "Get 200%"
+
+#~ msgid "Moving object"
+#~ msgstr "Moving object"

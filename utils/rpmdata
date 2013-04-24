@@ -1,0 +1,19 @@
+Name: nathive
+Summary: The usable image editor ($phase)
+Version: $version
+Release: $release
+Packager: $maintainer
+URL: http://www.nathive.org
+Group: Applications/Graphics
+License: GPL
+Requires: python, gtk2
+
+%description
+Nathive is a free software image editor, but focused on usability, logic and
+providing a smooth learning curve for everyone. The project run in the GNOME
+desktop environment.
+
+%files
+/*
+
+%define _rpmdir $cwd/utils/rpm/

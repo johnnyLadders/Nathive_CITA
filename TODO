@@ -1,0 +1,29 @@
+
+Nathive TODO
+============
+
+High priority
+-------------
+
+- Plugin manager.
+- Document resize and rescale dialogs.
+
+
+Medium priority
+---------------
+
+- Color balance tool.
+- Port brush spacing.
+- Layer endless virtual dimensions.
+- Fill tool.
+- Eraser color mode.
+
+
+Low priority
+------------
+
+- Mask tool.
+- A lot of plugins.
+- Metadata support.
+- Web repository with multiplatform package build.
+- Unittest/performance suite.

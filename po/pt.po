@@ -1,0 +1,394 @@
+# GETTEXT PORTABLE OBJECT
+# Portuguese translation for nathive
+# This file is distributed under the same license as the nathive package.
+msgid ""
+msgstr ""
+"Project-Id-Version: nathive\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-13 23:37+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: nathive/plugins/view-fullscreen.py:26
+msgid "Fullscreen"
+msgstr "Ecrã completo"
+
+#: nathive/plugins/clip-copy.py:26
+msgid "Copy"
+msgstr "Copiar"
+
+#: nathive/plugins/about.py:30 nathive/plugins/about.py:54
+msgid "About"
+msgstr "Sobre"
+
+#: nathive/plugins/about.py:59
+msgid "Credits"
+msgstr "Créditos"
+
+#: nathive/plugins/about.py:64
+msgid "License"
+msgstr "Licença"
+
+#: nathive/plugins/preferences.py:31
+msgid "Preferences"
+msgstr "Preferências"
+
+#: nathive/plugins/preferences.py:49
+msgid "General"
+msgstr "Geral"
+
+#: nathive/plugins/preferences.py:56
+msgid "Arrange"
+msgstr "Organizar"
+
+#: nathive/plugins/preferences.py:63
+msgid "Plugins"
+msgstr "Extensões"
+
+#: nathive/plugins/preferences.py:82 nathive/plugins/saveas.py:129
+msgid "Automatic"
+msgstr "Automático"
+
+#: nathive/plugins/preferences.py:91
+msgid "Language"
+msgstr "Língua"
+
+#: nathive/plugins/preferences.py:102
+msgid "Tab max length"
+msgstr "Largura máxima do separador"
+
+#: nathive/plugins/preferences.py:123 nathive/plugins/view-headbar.py:26
+msgid "Headbar"
+msgstr "Barra de Topo"
+
+#: nathive/plugins/preferences.py:124
+msgid "Toolbar"
+msgstr "Barra de Ferramentas"
+
+#: nathive/plugins/preferences.py:125 nathive/gui/menubar.py:32
+msgid "File"
+msgstr "Ficheiro"
+
+#: nathive/plugins/preferences.py:126 nathive/gui/menubar.py:33
+msgid "Edit"
+msgstr "Editar"
+
+#: nathive/plugins/preferences.py:127 nathive/gui/menubar.py:34
+msgid "View"
+msgstr "Ver"
+
+#: nathive/plugins/preferences.py:128 nathive/gui/menubar.py:35
+msgid "Help"
+msgstr "Ajuda"
+
+#: nathive/plugins/preferences.py:131
+msgid "Sort group"
+msgstr ""
+
+#: nathive/plugins/preferences.py:206 nathive/plugins/preferences.py:276
+msgid "Separator"
+msgstr "Separador"
+
+#: nathive/plugins/preferences.py:207
+msgid "New items"
+msgstr "Novos itens"
+
+#: nathive/plugins/console.py:34 nathive/plugins/console.py:59
+msgid "Console"
+msgstr "Consola"
+
+#: nathive/plugins/view-colorbar.py:26
+msgid "Colorbar"
+msgstr "Barra de Cores"
+
+#: nathive/plugins/open.py:30
+msgid "Open"
+msgstr "Abrir"
+
+#: nathive/plugins/open.py:54 nathive/plugins/saveas.py:63
+#: nathive/plugins/paste-file.py:54
+msgid "Preview"
+msgstr "Pré-visualizar"
+
+#: nathive/plugins/crop.py:307
+msgid "X offset"
+msgstr ""
+
+#: nathive/plugins/crop.py:316
+msgid "Y offset"
+msgstr ""
+
+#: nathive/plugins/crop.py:325 nathive/plugins/new.py:176
+msgid "Width"
+msgstr "Largura"
+
+#: nathive/plugins/crop.py:334 nathive/plugins/new.py:177
+msgid "Height"
+msgstr "Altura"
+
+#: nathive/plugins/save.py:30
+msgid "Save"
+msgstr "Guardar"
+
+#: nathive/plugins/quit.py:26
+msgid "Quit"
+msgstr "Sair"
+
+#: nathive/plugins/saveas.py:36
+msgid "Save as"
+msgstr "Guardar como"
+
+#: nathive/plugins/saveas.py:153 nathive/plugins/saveas.py:157
+msgid "Format"
+msgstr "Formato"
+
+#: nathive/plugins/saveas.py:153 nathive/plugins/select.py:410
+msgid "Quality"
+msgstr "Qualidade"
+
+#: nathive/plugins/saveas.py:256
+#, python-format
+msgid "«%s» already exists"
+msgstr "«%s» já existe"
+
+#: nathive/plugins/saveas.py:257
+msgid "Overwrite will replace the old image with the new one."
+msgstr "Sobrescrever irá substituir a imagem antiga pela nova."
+
+#: nathive/plugins/saveas.py:261
+msgid "Overwrite"
+msgstr "Sobrescrever"
+
+#: nathive/plugins/saveas.py:269
+msgid "Extension is wrong"
+msgstr "Extensão está errada"
+
+#: nathive/plugins/saveas.py:270
+msgid "Change the format or file extension."
+msgstr "Modifique o formato ou extensão do ficheiro."
+
+#: nathive/plugins/paste-file.py:30
+msgid "Paste from file"
+msgstr "Colar do ficheiro"
+
+#: nathive/plugins/clip-paste.py:26
+msgid "Paste"
+msgstr "Colar"
+
+#: nathive/plugins/redo.py:26
+msgid "Redo"
+msgstr "Refazer"
+
+#: nathive/plugins/view-sidebar.py:26
+msgid "Sidebar"
+msgstr "Barra Lateral"
+
+#: nathive/plugins/new.py:35 nathive/lib/layers.py:73
+msgid "New"
+msgstr "Novo"
+
+#: nathive/plugins/new.py:73
+msgid "Units"
+msgstr "Unidades"
+
+#: nathive/plugins/new.py:74 nathive/gui/statusbar.py:31
+msgid "Pixels"
+msgstr "Pixels"
+
+#: nathive/plugins/new.py:74
+msgid "Centimeters"
+msgstr "Centímetros"
+
+#: nathive/plugins/new.py:74
+msgid "Inches"
+msgstr "Polegadas"
+
+#: nathive/plugins/new.py:101
+msgid "Resolution"
+msgstr "Resolução"
+
+#: nathive/plugins/undo.py:26
+msgid "Undo"
+msgstr "Desfazer"
+
+#: nathive/plugins/home.py:30
+msgid "Nathive website"
+msgstr "Página Web do Nathive"
+
+#: nathive/plugins/brush.py:219
+msgid "Shape"
+msgstr "Forma"
+
+#: nathive/plugins/brush.py:228
+msgid "Size"
+msgstr "Dimensão"
+
+#: nathive/plugins/brush.py:237
+msgid "Smoothing"
+msgstr "Suavidade"
+
+#: nathive/plugins/brush.py:246
+msgid "Opacity"
+msgstr "Opacidade"
+
+#: nathive/plugins/brush.py:257
+msgid "Spacing"
+msgstr "Espaçamento"
+
+#: nathive/plugins/clip-cut.py:26
+msgid "Cut"
+msgstr "Cortar"
+
+#: nathive/plugins/select.py:409
+msgid "Scaling"
+msgstr "Escalar"
+
+#: nathive/plugins/select.py:410
+msgid "Fast"
+msgstr "Rápido"
+
+#: nathive/plugins/select.py:410
+msgid "Normal"
+msgstr "Normal"
+
+#: nathive/plugins/preset-manager.py:34
+msgid "Preset manager"
+msgstr "Gestor de modelos"
+
+#: nathive/plugins/preset-manager.py:63
+msgid "Plugin"
+msgstr "Extensão"
+
+#: nathive/plugins/close.py:26
+msgid "Close"
+msgstr "Fechar"
+
+#: nathive/lib/document.py:55
+msgid "Original"
+msgstr "Original"
+
+#: nathive/lib/layers.py:93
+msgid "Imported"
+msgstr "Importado"
+
+#: nathive/lib/layers.py:104 nathive/lib/layers.py:116
+msgid "Pasted"
+msgstr "Colado"
+
+#: nathive/gui/multiwidget/presets.py:32
+msgid "Presets"
+msgstr "Modelos"
+
+#: nathive/gui/multiwidget/presets.py:44 nathive/gui/multiwidget/clear.py:27
+msgid "Restore default values"
+msgstr "Restaurar valores originais"
+
+#: nathive/gui/multiwidget/presets.py:54
+msgid "Manage presets"
+msgstr "Gerir modelos"
+
+#: nathive/gui/multiwidget/presets.py:63
+msgid "Save the current values as a new preset"
+msgstr "Gravar valores actuais como novo modelo"
+
+#: nathive/gui/multiwidget/presets.py:71
+msgid "Show available presets"
+msgstr "Mostrar modelos disponíveis"
+
+#: nathive/gui/tabs.py:111
+msgid "Unsaved"
+msgstr "Não gravado"
+
+#: nathive/gui/sidebar_color.py:36
+msgid "Red"
+msgstr "Vermelho"
+
+#: nathive/gui/sidebar_color.py:46
+msgid "Green"
+msgstr "Verde"
+
+#: nathive/gui/sidebar_color.py:56
+msgid "Blue"
+msgstr "Azul"
+
+#: nathive/gui/sidebar_color.py:69
+msgid "Hue"
+msgstr "Matiz"
+
+#: nathive/gui/sidebar_color.py:79
+msgid "Saturation"
+msgstr "Saturação"
+
+#: nathive/gui/sidebar_color.py:89
+msgid "Value"
+msgstr "Valor"
+
+#: nathive/gui/sidebar_color.py:101
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
+
+#: nathive/gui/sidebar.py:38
+msgid "Color"
+msgstr "Cor"
+
+#: nathive/gui/sidebar.py:42
+msgid "Objects"
+msgstr "Objectos"
+
+#~ msgid "Sort"
+#~ msgstr "Ordenar"
+
+#~ msgid "Constant"
+#~ msgstr "Constante"
+
+#~ msgid "Variable"
+#~ msgstr "Variável"
+
+#~ msgid "Idle"
+#~ msgstr "Inactivo"
+
+#~ msgid "Dots/inches"
+#~ msgstr "Pontos/polegada"
+
+#~ msgid "No background"
+#~ msgstr "Sem fundo"
+
+#~ msgid "Version"
+#~ msgstr "Versão"
+
+#~ msgid "Template"
+#~ msgstr "Modelo"
+
+#~ msgid "CD cover"
+#~ msgstr "Capa de CD"
+
+#~ msgid "DVD cover"
+#~ msgstr "Capa de DVD"
+
+#~ msgid "Very high"
+#~ msgstr "Muito alto"
+
+#~ msgid "High"
+#~ msgstr "Alto"
+
+#~ msgid "Low"
+#~ msgstr "Baixo"
+
+#~ msgid "Very low"
+#~ msgstr "Muito baixo"
+
+#~ msgid "Brush size"
+#~ msgstr "Tamanho do pincel"
+
+#~ msgid "Rotate 90º"
+#~ msgstr "Rodar 90º"
+
+#~ msgid "Get 50%"
+#~ msgstr "Ver 50%"
+
+#~ msgid "Get 200%"
+#~ msgstr "Ver 200%"
+
+#~ msgid "Moving object"
+#~ msgstr "Mover objecto"
