@@ -46,6 +46,39 @@ def __softer(radio, dist, opacity, soft, 'ddii:c'):
     value = value_scale * opacity_value
     return (c)value
 
+def getSoftness(radio, dist, opacity, soft, 'ddii:c'):
+    """Return a smoothing value for given position in the brush.
+    @radio: Brush radio (half of size).
+    @dist: Distance away from brush center in requested pixel to soft.
+    @opacity: Brush opacity value (0-100).
+    @soft: Brush smoothing value (0-100).
+    =return: Smoothing value for requested pixel in scale 0-255."""
+
+    # Some convertions.
+    type d: soft_double, opacity_value, soft_start
+    soft_double = (d)soft
+    opacity_value = 255 * (d)opacity / 100
+    soft_start = radio / 100 * (100-soft_double)
+
+    # Go out if pixel doesn't need smoothing.
+    if dist <= soft_start: return (c)opacity_value
+    if dist > radio: return 0
+
+    # Convert values to 0-1 scale.
+    type d: soft_len, dist_prescale, dist_scale
+    soft_len = radio - soft_start
+    dist_prescale = dist - soft_start
+    dist_scale = dist_prescale / soft_len
+
+    # Apply y=x^3 in 0-1 scope.
+    type d: value_scale
+    if dist_scale < 0.5: value_scale = -(pow(dist_scale*2,3)/2)+1
+    else: value_scale = fabs(pow((dist_scale-1)*2,3)/2)
+
+    # Re-scale and return.
+    type d: value
+    value = value_scale * opacity_value
+    return (d)value
 
 def new(brush, recalc, shape, size, opacity, soft, r, g, b, 'Piiiiiiii:'):
     """Create a new brush in the given layer.

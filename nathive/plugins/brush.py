@@ -10,6 +10,7 @@
 
 
 import gtk
+import math
 
 from nathive.lib.plugin import *
 from nathive.lib.layer import Layer
@@ -97,9 +98,6 @@ class Brush(PluginTool):
 
     def new(self):
         
-        #regenerate pre computed softness mask
-        #        self.generateSoftnessMask()
-        
 
         del(self.brush)
         self.brush = Layer('brush', None, self.size, self.size)
@@ -114,6 +112,9 @@ class Brush(PluginTool):
             self.color[0],
             self.color[1],
             self.color[2])
+            
+        #regenerate pre computed softness mask
+        self.generateSoftnessMask()
 
         if not main.documents.active: return
         hud = main.documents.active.canvas.hud
@@ -330,16 +331,39 @@ class Brush(PluginTool):
 
         
         
-#    def generateSoftnessMask(self):
-#        for row in range(self.brush.height):
-#            tempRow = []
-#            for column in range(self.brush.width):
-#                #radius
-#                radius = self.brush.size/2
-#                #distance in columns (x)
-#                distX = column - radius + 0.5
-#                #distance in rows (y)
-#                distY = row - radius + 0.5
-#                #dist
-#                dist = sqrt((distX * distX) + (distY * distY))
-##                tempRow.append([self.brush.softer(radius , dist, self.brush.opacity, self.brush.soft)])
+    def generateSoftnessMask(self):
+        #clear old mask
+        self.softnessMask = []
+        
+        for row in range(self.brush.height):
+            
+            #Create Temporary Row To Hold Column Mask Values
+            tempRow = []
+            for column in range(self.brush.width):
+                
+                #radius
+                radius = self.size/2
+                
+                #distance in columns (x)
+                distX = column - radius + 0.5
+                
+                #distance in rows (y)
+                distY = row - radius + 0.5
+                
+                #dist
+                dist = math.sqrt((distX * distX) + (distY * distY))
+                
+                #Calculate Softness for the relative row and column
+                #then store it in a new array (column) and append the array to
+                #the row
+                tempSoftness = brush.getSoftness(radius , dist, self.opacity, self.soft)
+                if(not(tempSoftness is None)):
+                    tempSoftness = ord(tempSoftness)
+                    pass
+                else:
+                    tempSoftness = 0
+                tempRow.append([tempSoftness])
+            
+            #Append Temporary Row to softnessMask
+            self.softnessMask.append(tempRow)
+            
