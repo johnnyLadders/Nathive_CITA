@@ -257,3 +257,6 @@ class ColorDictionary(object):
         self.removeSelectedColor()
         #close dialog
         self.quit()
+        
+    def numColors(self):
+        return len(self.palette)

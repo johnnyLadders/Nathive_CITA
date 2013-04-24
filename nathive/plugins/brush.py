@@ -101,6 +101,7 @@ class Brush(PluginTool):
 
         del(self.brush)
         self.brush = Layer('brush', None, self.size, self.size)
+        
 
         brush.new(
             self.brush.pointer,
@@ -115,6 +116,9 @@ class Brush(PluginTool):
             
         #regenerate pre computed softness mask
         self.generateSoftnessMask()
+        
+        if((not(self.layer is None)) and main.gui.colorDictionary.numColors() > 3):
+            print self.layer.pixData
 
         if not main.documents.active: return
         hud = main.documents.active.canvas.hud
@@ -305,15 +309,26 @@ class Brush(PluginTool):
         #Step
         step = self.layer.width
         
+        #Actual Row Number
+        rowNum = 0
+        
         #iterate through relevant pixels
         for row in range(start,end,step):
+            #Actual Column Number
+            columnNum = 0
             
-            for pixel in range(row,row + self.brush.width):
+            for column in range(row,row + self.brush.width):
                 #calculate opacity
-                opacity = 125
+                opacity = self.getPixelSoftness(rowNum,columnNum)
             
                 #update pixel
-                self.layer.pixData[pixel].append([main.color.hex,opacity])
+                self.layer.pixData[column].append([main.color.hex,opacity])
+                
+                #increment column number
+                columnNum = columnNum + 1
+            
+            #increment row number
+            rowNum = rowNum + 1
     
     def updateSoftness(self,softness):
         self.soft = int(softness)
@@ -367,3 +382,6 @@ class Brush(PluginTool):
             #Append Temporary Row to softnessMask
             self.softnessMask.append(tempRow)
             
+    #returns the precomputed softness for a pixels position
+    def getPixelSoftness(self,row,column):
+        return self.softnessMask[row][column][0]
