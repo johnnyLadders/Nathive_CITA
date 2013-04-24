@@ -153,6 +153,12 @@ class Brush(PluginTool):
         x = x - (self.size / 2)
         y = y - (self.size / 2)
 
+        
+#        #add color to color dictionary
+#        CD = main.gui.colorDictionary
+#        setItem = getattr(CD,'addAndShowNewColor')
+#        setItem(main.color.hex)
+
         # Brush.
         self.brush.composite(
             self.composite_mode,
