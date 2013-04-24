@@ -21,6 +21,9 @@ class ColorDictionary(object):
         """Create the colorbar."""
         
         self.parent = parent
+        
+        #Color Dictionary Frame
+        self.frame = gtk.Frame()
 
         # Colorbar properties.
         self.vbox = gtk.VBox(False, 0)
@@ -31,6 +34,12 @@ class ColorDictionary(object):
         # Color Switch Fields
         self.toBeReplaced = ""
         self.newColor = ""
+        
+#        #Color Dictionary Label
+#        colorDictLabel = gtk.Label("Color \nDictionary")
+#        colorDictLabel.set_alignment(0.5, 0.5)
+#        colorDictLabel.set_justify(gtk.JUSTIFY_CENTER)
+#        self.vbox.pack_start(colorDictLabel, True, True, 0)
 
         # Get palette.
         self.palette = self.getpalette()
@@ -40,8 +49,10 @@ class ColorDictionary(object):
             self.item(color)
 
         # Pack colorbar into parent widget and show.
-        parent.pack_start(self.vbox, False, False, 0)
-        self.vbox.show_all()
+        self.frame.add(self.vbox)
+        parent.pack_start(self.frame, False, False, 0)
+        self.frame.show_all()
+        #self.vbox.show_all()
 
 
     def getpalette(self):
@@ -217,7 +228,7 @@ class ColorDictionary(object):
                 
             
         except:
-            #Don't do anything
+            #If value error is thrown: Don't do anything
             pass
         
         #clear temp colors
