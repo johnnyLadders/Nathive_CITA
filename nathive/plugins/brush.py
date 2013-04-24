@@ -116,9 +116,6 @@ class Brush(PluginTool):
             
         #regenerate pre computed softness mask
         self.generateSoftnessMask()
-        
-        if((not(self.layer is None)) and main.gui.colorDictionary.numColors() > 3):
-            print self.layer.pixData
 
         if not main.documents.active: return
         hud = main.documents.active.canvas.hud
