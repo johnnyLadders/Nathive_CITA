@@ -36,6 +36,9 @@ class Brush(PluginTool):
         self.default()
         main.config.push_to_plugin(self)
 
+        #pregenerated softness mask
+        self.softnessMask = []
+
         # Init apply limits (left, top, right, bottom).
         self.apply = [0, 0, 0, 0]
 
@@ -43,6 +46,7 @@ class Brush(PluginTool):
         self.composite_mode = 1
         self.color_updated_todo = main.color.updated_todo
 
+        self.count = 0
 
 
     def enable(self):
