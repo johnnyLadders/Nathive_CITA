@@ -250,7 +250,7 @@ class Brush(PluginTool):
             0,
             100,
             self.soft,
-            lambda x: self.set_then_new('soft', int(x)))
+            self.updateSoftness)
 
         self.gui_opacity = MultiWidgetSpin(
             self.box,
@@ -305,11 +305,11 @@ class Brush(PluginTool):
                 #update pixel
                 self.layer.pixData[pixel].append([main.color.hex,opacity])
     
-#    def updateSoftness(self,softness):
-#        print "softness"
-#        self.soft = softness
+    def updateSoftness(self,softness):
+        print softness
+        self.soft = softness
 #        self.generateSoftnessMask()
-#    
+    
 #    def updateOpacity(self,opacity):
 #        print "opacity"
 #        self.opacity = opacity
