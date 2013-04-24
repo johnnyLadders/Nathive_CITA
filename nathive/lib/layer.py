@@ -57,10 +57,10 @@ class Layer(object):
         self.height = self.pixbuf.get_height()
         self.pointer = convert.pixbuf_pointer(self.pixbuf)
 
-#        #initialize pixel data array
-#        for i in range(self.pixbuf.get_width() * self.pixbuf.get_height()):
-#            self.pixData.append([])
-#
+        #initialize pixel data array
+        for i in range(self.pixbuf.get_width() * self.pixbuf.get_height()):
+            self.pixData.append([])
+
 
     def update_pointer(self):
         """Update the pixbuf pointer."""

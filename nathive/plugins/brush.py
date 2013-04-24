@@ -99,6 +99,7 @@ class Brush(PluginTool):
         
         #regenerate pre computed softness mask
         #        self.generateSoftnessMask()
+        
 
         del(self.brush)
         self.brush = Layer('brush', None, self.size, self.size)
@@ -162,6 +163,9 @@ class Brush(PluginTool):
         CD = main.gui.colorDictionary
         setItem = getattr(CD,'addAndShowNewColor')
         setItem(main.color.hex)
+        
+        #update pixel data
+        self.updatePixData(x, y)
 
         # Brush.
         self.brush.composite(
@@ -277,6 +281,7 @@ class Brush(PluginTool):
         return self.box
     
     def updatePixData(self, mouseX, mouseY):
+        
         
         #foreground xOffset
         xOff = mouseX
