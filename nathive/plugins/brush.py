@@ -271,3 +271,66 @@ class Brush(PluginTool):
             lambda x: None)
 
         return self.box
+    
+    def updatePixData(self, mouseX, mouseY):
+        
+        #foreground xOffset
+        xOff = mouseX
+        
+        #foreground yOffset
+        yOff = mouseY
+        
+        #foreground xEnd
+        xEnd = xOff + self.brush.width
+        
+        #foreground yEnd
+        yEnd = yOff + self.brush.height
+        
+        #Start
+        start = (yOff * self.layer.width) + xOff
+        
+        #Stop
+        end = ((yEnd - 1) * self.layer.width) + xEnd
+        
+        #Step
+        step = self.layer.width
+        
+        #iterate through relevant pixels
+        for row in range(start,end,step):
+            
+            for pixel in range(row,row + self.brush.width):
+                #calculate opacity
+                opacity = 125
+            
+                #update pixel
+                self.layer.pixData[pixel].append([main.color.hex,opacity])
+    
+#    def updateSoftness(self,softness):
+#        print "softness"
+#        self.soft = softness
+#        self.generateSoftnessMask()
+#    
+#    def updateOpacity(self,opacity):
+#        print "opacity"
+#        self.opacity = opacity
+#        self.generateSoftnessMask()
+#    
+#    def updateSize(self,size):
+#        print "size"
+#        self.size = size
+#        self.generateSoftnessMask()
+#        
+#        
+#    def generateSoftnessMask(self):
+#        for row in range(self.brush.height):
+#            tempRow = []
+#            for column in range(self.brush.width):
+#                #radius
+#                radius = self.brush.size/2
+#                #distance in columns (x)
+#                distX = column - radius + 0.5
+#                #distance in rows (y)
+#                distY = row - radius + 0.5
+#                #dist
+#                dist = sqrt((distX * distX) + (distY * distY))
+##                tempRow.append([self.brush.softer(radius , dist, self.brush.opacity, self.brush.soft)])
