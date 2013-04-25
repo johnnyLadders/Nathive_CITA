@@ -15,15 +15,23 @@ from nathive.gui.multiwidget import *
 
 
 class ColorDictionary(object):
-    """Define colorbar instance."""
+    """Define color Dictionary instance."""
 
     def __init__(self, parent):
-        """Create the colorbar."""
+        """Create the color Dictionary."""
         
         self.parent = parent
         
         #Color Dictionary Frame
         self.frame = gtk.Frame()
+        #lable
+        frameLabel = gtk.Label("Color \nDictionary")
+        frameLabel.set_justify(gtk.JUSTIFY_CENTER)
+        self.frame.set_label_widget(frameLabel)
+        self.frame.set_label_align(0.5, 0.5)
+        #frame Color
+        frameColor = gtk.gdk.color_parse('#7F7F7F')
+        self.frame.modify_bg(gtk.STATE_NORMAL, frameColor)
 
         # Colorbar properties.
         self.vbox = gtk.VBox(False, 0)
@@ -34,12 +42,6 @@ class ColorDictionary(object):
         # Color Switch Fields
         self.toBeReplaced = ""
         self.newColor = ""
-        
-#        #Color Dictionary Label
-#        colorDictLabel = gtk.Label("Color \nDictionary")
-#        colorDictLabel.set_alignment(0.5, 0.5)
-#        colorDictLabel.set_justify(gtk.JUSTIFY_CENTER)
-#        self.vbox.pack_start(colorDictLabel, True, True, 0)
 
         # Get palette.
         self.palette = self.getpalette()
