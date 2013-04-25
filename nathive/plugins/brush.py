@@ -283,8 +283,6 @@ class Brush(PluginTool):
     
     def updatePixData(self, mouseX, mouseY):
         
-        
-        
         #foreground xOffset
         xOff = mouseX
         
@@ -314,16 +312,29 @@ class Brush(PluginTool):
                 #retrieve pre-calculated opacity
                 opacity = self.getPixelSoftness(rowNum,columnNum)
                 
-                try:
-            
-                    #update pixel
-                    self.layer.pixData[row][column].append([main.color.hex,opacity])
-                except:
-                    print "xMouse: " + str(mouseX)
-                    print "yMouse: " + str(mouseY)
-                    print "row: " + str(row)
-                    print "column: " + str(column)
-                
+                #only add if some opacity exists
+                if(opacity != 0.0):
+                    
+                    #if previous element is the same color--> combine their opacities and divide by 1
+                    if((len(self.layer.pixData[row][column]) != 0) and
+                        (self.layer.pixData[row][column][-1][0] == main.color.hex)):
+
+                        #combine opacity
+                        combinedOpacity = math.fmod(1.0, (self.layer.pixData[row][column][-1][1] + opacity))
+
+                        #if their combined opacities == 1 --> remove the rest of the array and add
+                        if(combinedOpacity == 1.0):
+                            self.layer.pixData[row][column] = [[main.color.hex,1.0]]
+
+                        #else update old opacity
+                        else:
+                            self.layer.pixData[row][column][-1][1] = combinedOpacity
+
+
+                    #else just append
+                    else:
+                        self.layer.pixData[row][column].append([main.color.hex,opacity])
+
                 #increment column number
                 columnNum = columnNum + 1
             
