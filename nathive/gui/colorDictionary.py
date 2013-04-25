@@ -250,6 +250,7 @@ class ColorDictionary(object):
             pass
     
     def removeSelectedColor(self):
+        
         #If in palette
         if(self.toBeReplaced in self.palette):
             #remove from palette

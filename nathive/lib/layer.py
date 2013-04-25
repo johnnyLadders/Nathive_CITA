@@ -10,6 +10,7 @@
 
 
 import gtk
+import inspect
 
 from nathive.lib import convert
 from nathive.libc import core
@@ -21,8 +22,10 @@ class Layer(object):
 
     def __init__(self, name, path, width=0, height=0, fill=False):
         """Create the layer."""
+        
 
-        self.pixData =[]
+        #declare pixData Object
+        self.pixData = None
 
         # Allow debug tracking.
         main.log.allow_tracking(self)
@@ -56,10 +59,6 @@ class Layer(object):
         self.width = self.pixbuf.get_width()
         self.height = self.pixbuf.get_height()
         self.pointer = convert.pixbuf_pointer(self.pixbuf)
-
-        #initialize pixel data array
-        for i in range(self.pixbuf.get_width() * self.pixbuf.get_height()):
-            self.pixData.append([])
 
 
     def update_pointer(self):
@@ -136,3 +135,12 @@ class Layer(object):
         """Clear (fill) the given area with black and opaque pixels."""
 
         core.clear(self.pointer, self.width, self.height, x, y, width, height)
+        
+    def initPixData(self):
+        
+        #if not already initialized
+        if(self.pixData is None):
+            
+            #initialize
+            self.pixData = [[[]for j in xrange(self.width)] for i in xrange(self.height)]
+

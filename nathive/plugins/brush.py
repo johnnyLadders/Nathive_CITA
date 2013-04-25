@@ -146,8 +146,7 @@ class Brush(PluginTool):
         main.documents.active.actions.begin('layer-content')
         self.layer = main.documents.active.layers.active
         self.motion_primary(x, y, ux, uy)
-
-
+        
     def motion_primary(self, x, y, ux, uy):
 
         # Update apply limits.
@@ -285,48 +284,52 @@ class Brush(PluginTool):
     def updatePixData(self, mouseX, mouseY):
         
         
+        
         #foreground xOffset
         xOff = mouseX
         
         #foreground yOffset
         yOff = mouseY
         
-        #foreground xEnd
+        #foreground xEnd (must be <= layer width)
         xEnd = xOff + self.brush.width
+        xEnd = xEnd if(xEnd < self.layer.width) else self.layer.width
         
-        #foreground yEnd
+        #foreground yEnd (must be <= layer height)
         yEnd = yOff + self.brush.height
+        yEnd = yEnd if(yEnd < self.layer.height) else self.layer.height
         
-        #Start
-        start = (yOff * self.layer.width) + xOff
-        
-        #Stop
-        end = ((yEnd - 1) * self.layer.width) + xEnd
-        
-        #Step
-        step = self.layer.width
-        
+  
         #Actual Row Number
         rowNum = 0
         
+        
         #iterate through relevant pixels
-        for row in range(start,end,step):
+        for row in range(yOff,yEnd):
             #Actual Column Number
             columnNum = 0
-            
-            for column in range(row,row + self.brush.width):
-                #calculate opacity
+
+            for column in range(xOff,xEnd):
+                
+                #retrieve pre-calculated opacity
                 opacity = self.getPixelSoftness(rowNum,columnNum)
+                
+                try:
             
-                #update pixel
-                self.layer.pixData[column].append([main.color.hex,opacity])
+                    #update pixel
+                    self.layer.pixData[row][column].append([main.color.hex,opacity])
+                except:
+                    print "xMouse: " + str(mouseX)
+                    print "yMouse: " + str(mouseY)
+                    print "row: " + str(row)
+                    print "column: " + str(column)
                 
                 #increment column number
                 columnNum = columnNum + 1
             
             #increment row number
             rowNum = rowNum + 1
-    
+
     def updateSoftness(self,softness):
         self.soft = int(softness)
         self.new()
@@ -371,13 +374,20 @@ class Brush(PluginTool):
                 tempSoftness = brush.getSoftness(radius , dist, self.opacity, self.soft)
                 if(not(tempSoftness is None)):
                     tempSoftness = ord(tempSoftness)
-                    pass
                 else:
                     tempSoftness = 0
+                    
+                #convert to float between 0 and 1
+                tempSoftness = (tempSoftness/255.0)
+                
+                #add column to row
                 tempRow.append([tempSoftness])
+                
+                
             
             #Append Temporary Row to softnessMask
             self.softnessMask.append(tempRow)
+
             
     #returns the precomputed softness for a pixels position
     def getPixelSoftness(self,row,column):

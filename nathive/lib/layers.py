@@ -45,6 +45,9 @@ class Layers(object):
         self.active = layer
         self.update_prelower()
         self.update_preupper()
+        
+        #pixData
+        layer.initPixData()
 
         # Redraw canvas and refresh sidebar.
         if redraw:
