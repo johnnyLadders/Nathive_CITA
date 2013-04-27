@@ -32,8 +32,38 @@ def __over_color(bv, fv, ba, fa, fma, 'ccccf:c'):
     #       +-----------+   +------+    +----------------+ +---+
     #           back          fore           corrector     round
 
+def getOverColor(bv, fv, ba, fa, fma, 'ccccf:c'):
+    """Calculate final channel value for the given channel and alpha values
+    using the over algorithm.
+    @bv: Background channel value.
+    @fv: Foreground channel value.
+    @ba: Background alpha.
+    @fa: Foreground alpha.
+    @fma: Foreground master alpha value as float.
+    =return: Final background channel value."""
+
+    if ba == 0: return fv
+    type f: bad, fad, fadx
+    bad = (f)ba / 255
+    fad = (f)fa / 255 * fma
+    fadx = 1 - fad
+
+    return ((bv*bad*fadx) + (fv*fad)) / (fad + (bad*fadx)) + 0.5
+    #       +-----------+   +------+    +----------------+ +---+
+    #           back          fore           corrector     round
 
 def __over_alpha(ba, fa, fma, 'ccf:c'):
+    """Calculate alpha for the given alpha values using the over algorithm.
+    @ba: Background alpha.
+    @fa: Foreground alpha.
+    @fma: Foreground master alpha value as float.
+    =return: Final background alpha value."""
+
+    if ba == 255: return ba
+    fa = fa * fma
+    return fa + (ba * (255-fa) / 255)
+
+def getOverAlpha(ba, fa, fma, 'ccf:c'):
     """Calculate alpha for the given alpha values using the over algorithm.
     @ba: Background alpha.
     @fa: Foreground alpha.

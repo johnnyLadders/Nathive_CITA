@@ -50,10 +50,10 @@ class Layer(object):
         # Create empty pixbuf scratch.
         self.pixbuf = gtk.gdk.Pixbuf(0, True, 8, width, height)
 
-        # Fill pixbuf.
-        if not fill: fillcolor = 0xffffff00
-        else: fillcolor = 0xffffffff
-        self.pixbuf.fill(fillcolor)
+#        # Fill pixbuf.
+#        if not fill: fillcolor = 0xffffff00
+#        else: fillcolor = 0xffffffff
+#        self.pixbuf.fill(fillcolor)
 
         # Set pixbuf dimensions and memory address.
         self.width = self.pixbuf.get_width()
@@ -141,6 +141,9 @@ class Layer(object):
         #if not already initialized
         if(self.pixData is None):
             
-            #initialize
+            #get index of White in palette
+            whiteIndex = main.gui.colorDictionary.palette.index("ffffff")
+            
+            #initialize with fill of white
+            #self.pixData = [[[[whiteIndex,255,1.0]]for j in xrange(self.width)] for i in xrange(self.height)]
             self.pixData = [[[]for j in xrange(self.width)] for i in xrange(self.height)]
-

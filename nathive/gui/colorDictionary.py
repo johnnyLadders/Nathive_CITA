@@ -12,6 +12,11 @@
 import gtk
 
 from nathive.gui.multiwidget import *
+from nathive.lib import convert
+from nathive.libc import core
+
+
+
 
 
 class ColorDictionary(object):
@@ -199,6 +204,47 @@ class ColorDictionary(object):
         self.dialog.hide()
         self.dialog.destroy()
         
+#    def replaceColor(self):
+#        
+#        #Try except structure ensures that only valid hex values are used
+#        try:
+#            #This method will throw a value error if not valid hex
+#            newGTKColor = gtk.gdk.color_parse('#' + self.newColor)
+#            
+#            
+#            #remove old color from palette
+#            self.palette.remove(self.toBeReplaced)
+#            
+#            #only continue if newColor insn't already in palette
+#            if(not(self.newColor in self.palette)):
+#                #Change the Color of the Widget in the color dictionary
+#                self.callingWidget.modify_bg(gtk.STATE_NORMAL, newGTKColor)
+#                
+#                #Add the new color to the palette
+#                self.palette.append(self.newColor)
+#                
+#                #set project main color to new color
+#                main.color.set_hex(self.newColor)
+#            
+#            else:
+#                #only continue if new color is not the same as the old color
+#                if(self.newColor != self.toBeReplaced):
+#                    #only remove old color, new color is already in palette
+#                    self.removeSelectedColor()
+#                
+#                
+#            
+#        except:
+#            #If value error is thrown: Don't do anything
+#            pass
+#        
+#        #clear temp colors
+#        self.toBeReplaced = ""
+#        self.newColor = ""
+#        
+#        #close dialog
+#        self.quit()
+        
     def replaceColor(self):
         
         #Try except structure ensures that only valid hex values are used
@@ -206,32 +252,39 @@ class ColorDictionary(object):
             #This method will throw a value error if not valid hex
             newGTKColor = gtk.gdk.color_parse('#' + self.newColor)
             
+#            #remove old color from palette
+#            self.palette.remove(self.toBeReplaced) # leave in for now 
+
             
-            #remove old color from palette
-            self.palette.remove(self.toBeReplaced)
+            #get index of old color
+            indexOfOld = self.palette.index(self.toBeReplaced)
             
             #only continue if newColor insn't already in palette
             if(not(self.newColor in self.palette)):
                 #Change the Color of the Widget in the color dictionary
                 self.callingWidget.modify_bg(gtk.STATE_NORMAL, newGTKColor)
                 
-                #Add the new color to the palette
-                self.palette.append(self.newColor)
+                #Replace in Array
+                self.palette[indexOfOld] = self.newColor
                 
                 #set project main color to new color
                 main.color.set_hex(self.newColor)
-            
+                 
             else:
                 #only continue if new color is not the same as the old color
                 if(self.newColor != self.toBeReplaced):
                     #only remove old color, new color is already in palette
                     self.removeSelectedColor()
-                
+
+           
                 
             
         except:
             #If value error is thrown: Don't do anything
             pass
+
+        #reevaluate
+        self.reevaluate() 
         
         #clear temp colors
         self.toBeReplaced = ""
@@ -239,6 +292,117 @@ class ColorDictionary(object):
         
         #close dialog
         self.quit()
+    
+    def reevaluate(self):
+        
+        #get pixbuf array
+        pixBufArray = main.documents.active.layers.active.pixbuf.get_pixels_array()
+        
+        #get pixData
+        pixData = main.documents.active.layers.active.pixData
+                
+        #for each k in range(len(pixel buffer array)) 
+        for k in range(len(pixBufArray)):
+            #for each j in range(len(k))
+            for j in range(len(pixBufArray[k])):
+                
+                #final R = 0
+                finalR = 0
+                #final G = 0
+                finalG = 0
+                #final B = 0
+                finalB = 0
+                #final A = 0 #as long as this stays zero it will be transparent
+                finalA = 0
+                
+                #initialize to first element
+                if(len(pixData[k][j]) != 0):
+                    finalR,finalG,finalB = convert.hex_rgb(self.palette[pixData[k][j][0][0]])
+                    finalA = pixData[k][j][0][1]
+                
+                #for i in range(len(j) - 1)
+                for i in range(len(pixData[k][j]) - 1):
+                    
+#                    #i+1R, i+1B, i+1G, i+1A
+                    i1R,i1G,i1B = convert.hex_rgb(self.palette[pixData[k][j][i + 1][0]])
+                    #i+1A
+                    i1A = pixData[k][j][i + 1][1]
+                    #i1AM
+                    i1AM = pixData[k][j][i + 1][2]
+                    
+                    
+                    
+                    #final R
+                    finalR = self.compositeRGB(finalR,i1R,finalA,i1A,i1AM)
+                    #final G
+                    finalG = self.compositeRGB(finalG,i1G,finalA,i1A,i1AM)
+                    #final B
+                    finalB = self.compositeRGB(finalB,i1B,finalA,i1A,i1AM)
+                    #final A
+                    finalA = self.compositeAlpha(finalA,pixData[k][j][i + 1][1],i1AM)
+
+                    
+            
+                    
+                #insert into pixBuf Array
+                
+                pixBufArray[k][j][0] = finalR
+                pixBufArray[k][j][1] = finalG
+                pixBufArray[k][j][2] = finalB
+                pixBufArray[k][j][3] = finalA
+
+
+        
+        #new pixBuf from array
+        main.documents.active.layers.active.pixbuf = gtk.gdk.pixbuf_new_from_array(pixBufArray, gtk.gdk.COLORSPACE_RGB, 8)
+        
+        #redraw expired area
+        main.documents.active.canvas.redraw_all()
+        main.documents.active.actions.end([0,0,699,699])
+
+
+    def compositeRGB(self,bv,fv,ba,fa,fma):
+#    """Calculate final channel value for the given channel and alpha values
+#    using the over algorithm.
+#    @bv: Background channel value.
+#    @fv: Foreground channel value.
+#    @ba: Background alpha.
+#    @fa: Foreground alpha.
+#    @fma: Foreground master alpha value as float.
+#    =return: Final background channel value."""
+
+#    if ba == 0: return fv
+        if ba == 0: return fv
+
+#    bad = (f)ba / 255
+        bad = ba / 255
+        
+#    fad = (f)fa / 255 * fma
+        fad = (fa /255) * fma
+        
+#    fadx = 1 - fad
+        fadx = 1 - fad
+        
+#    return ((bv*bad*fadx) + (fv*fad)) / (fad + (bad*fadx)) + 0.5
+#    #       +-----------+   +------+    +----------------+ +---+
+#    #           back          fore           corrector     round
+
+        return int(((bv * bad * fadx) + (fv * fad)) / (fad + (bad * fadx)) + 0.5)
+    
+    def compositeAlpha(self, ba, fa, fma):
+#    """Calculate alpha for the given alpha values using the over algorithm.
+#    @ba: Background alpha.
+#    @fa: Foreground alpha.
+#    @fma: Foreground master alpha value as float.
+#    =return: Final background alpha value."""
+
+#    if ba == 255: return ba
+        if ba == 255: return ba
+#    fa = fa * fma
+        #fa = fa * fma
+                
+#    return fa + (ba * (255-fa) / 255)
+        return fa + (ba * (255 - fa) / 255)
         
     def updateNewColor(self,newColor):
         #set new color 
@@ -255,8 +419,21 @@ class ColorDictionary(object):
         
         #If in palette
         if(self.toBeReplaced in self.palette):
-            #remove from palette
-            self.palette.remove(self.toBeReplaced)
+            #index of color to be removed
+            removedIndex = self.palette.index(self.toBeReplaced)
+ 
+            #remove from palette 
+#            self.palette.remove(self.toBeReplaced) #leaving this in for now so 
+#           not to affect the other indecies 
+            
+        #for each color entry: if old --> remove, if index > old --> subtract 1
+        for r in range(len(main.documents.active.layers.active.pixData)):
+            for c in range(len(main.documents.active.layers.active.pixData[r])):
+                for entry in range(len(main.documents.active.layers.active.pixData[r][c])):
+                    if main.documents.active.layers.active.pixData[r][c][entry][0] == removedIndex:
+                        main.documents.active.layers.active.pixData.remove(main.documents.active.layers.active.pixData[r][c][entry][0])
+                        
+                            
         
         #only remove old color, new color is already in palette
         self.vbox.remove(self.callingWidget)
@@ -266,7 +443,7 @@ class ColorDictionary(object):
 
         #refresh gui
         self.vbox.show_all()
-
+        
     def removeButton(self):
         self.removeSelectedColor()
         #close dialog

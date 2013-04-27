@@ -17,6 +17,9 @@ from nathive.lib.layer import Layer
 from nathive.libc import brush
 from nathive.gui import utils as gutils
 from nathive.gui.multiwidget import *
+from nathive.libc import core
+
+
 
 
 class Brush(PluginTool):
@@ -290,17 +293,19 @@ class Brush(PluginTool):
         yOff = mouseY
         
         #foreground xEnd (must be <= layer width)
-        xEnd = xOff + self.brush.width
+        xEnd = xOff + self.size
         xEnd = xEnd if(xEnd < self.layer.width) else self.layer.width
         
         #foreground yEnd (must be <= layer height)
-        yEnd = yOff + self.brush.height
+        yEnd = yOff + self.size
         yEnd = yEnd if(yEnd < self.layer.height) else self.layer.height
-        
+
   
         #Actual Row Number
         rowNum = 0
         
+        #get Color Index
+        colorIndex = main.gui.colorDictionary.palette.index(main.color.hex)
         
         #iterate through relevant pixels
         for row in range(yOff,yEnd):
@@ -312,35 +317,55 @@ class Brush(PluginTool):
                 #retrieve pre-calculated opacity
                 opacity = self.getPixelSoftness(rowNum,columnNum)
                 
+                              
+                
                 #only add if some opacity exists
-                if(opacity != 0.0):
+                if(opacity != 0):
                     
-                    #if previous element is the same color--> combine their opacities and divide by 1
+                    #if last element is the same color
                     if((len(self.layer.pixData[row][column]) != 0) and
-                        (self.layer.pixData[row][column][-1][0] == main.color.hex)):
+                        (self.layer.pixData[row][column][-1][0] == colorIndex)):
 
                         #combine opacity
-                        combinedOpacity = math.fmod(1.0, (self.layer.pixData[row][column][-1][1] + opacity))
+                        #print math.fmod(1.0, self.compositeAlpha(opacity,self.layer.pixData[row][column][-1][1]))
+                        combinedOpacity = self.compositeAlpha(opacity,self.layer.pixData[row][column][-1][1],self.opacity)
 
-                        #if their combined opacities == 1 --> remove the rest of the array and add
-                        if(combinedOpacity == 1.0):
-                            self.layer.pixData[row][column] = [[main.color.hex,1.0]]
+                        #if their combined opacities == 255 --> remove the rest of the array and add
+                        if(combinedOpacity == 255):
+                            self.layer.pixData[row][column] = [[colorIndex,255,self.opacity/100.0]]
 
                         #else update old opacity
                         else:
                             self.layer.pixData[row][column][-1][1] = combinedOpacity
+                            self.layer.pixData[row][column][-1][2] = (self.layer.pixData[row][column][-1][2] + self.opacity/100.0)
+                            if(self.layer.pixData[row][column][-1][2] > 1.0): self.layer.pixData[row][column][-1][2] = 1.0
 
 
                     #else just append
                     else:
-                        self.layer.pixData[row][column].append([main.color.hex,opacity])
+                        self.layer.pixData[row][column].append([colorIndex,opacity,self.opacity/100.0])
 
                 #increment column number
                 columnNum = columnNum + 1
             
             #increment row number
             rowNum = rowNum + 1
+            
+    def compositeAlpha(self, ba, fa, fma):
+#    """Calculate alpha for the given alpha values using the over algorithm.
+#    @ba: Background alpha.
+#    @fa: Foreground alpha.
+#    @fma: Foreground master alpha value as float.
+#    =return: Final background alpha value."""
 
+#    if ba == 255: return ba
+        if ba == 255: return ba
+#    fa = fa * fma
+        #fa = long(fa * fma)
+        
+#    return fa + (ba * (255-fa) / 255)
+        return fa + (ba * (255 - fa) / 255)
+        
     def updateSoftness(self,softness):
         self.soft = int(softness)
         self.new()
@@ -353,53 +378,115 @@ class Brush(PluginTool):
     
     def updateSize(self,size):
         self.size = int(size)
+        self.pixBufFromPixData()
         self.new()
 
         
         
-    def generateSoftnessMask(self):
-        #clear old mask
-        self.softnessMask = []
-        
-        for row in range(self.brush.height):
-            
-            #Create Temporary Row To Hold Column Mask Values
-            tempRow = []
-            for column in range(self.brush.width):
-                
-                #radius
-                radius = self.size/2
-                
-                #distance in columns (x)
-                distX = column - radius + 0.5
-                
-                #distance in rows (y)
-                distY = row - radius + 0.5
-                
-                #dist
-                dist = math.sqrt((distX * distX) + (distY * distY))
-                
-                #Calculate Softness for the relative row and column
-                #then store it in a new array (column) and append the array to
-                #the row
-                tempSoftness = brush.getSoftness(radius , dist, self.opacity, self.soft)
-                if(not(tempSoftness is None)):
-                    tempSoftness = ord(tempSoftness)
-                else:
-                    tempSoftness = 0
-                    
-                #convert to float between 0 and 1
-                tempSoftness = (tempSoftness/255.0)
-                
-                #add column to row
-                tempRow.append([tempSoftness])
-                
-                
-            
-            #Append Temporary Row to softnessMask
-            self.softnessMask.append(tempRow)
+#    def generateSoftnessMask(self):
+#        #clear old mask
+#        self.softnessMask = []
+#                
+#        for row in range(self.size):
+#            
+#            #Create Temporary Row To Hold Column Mask Values
+#            tempRow = []
+#            for column in range(self.size):
+#                
+#                #radius
+#                radius = self.size/2.0
+#                
+#                #distance in columns (x)
+#                distX = column - radius + 1.0
+#                
+#                #distance in rows (y)
+#                distY = row - radius + 1.0
+#                
+#                #dist
+#                dist = int(math.sqrt((distX ** 2) + (distY ** 2)))
+#                
+#                print "distance: " + str(dist)
+#                print "radius: " + str(radius)
+#
+#                #dist = sqrt( (dist_x*dist_x) + (dist_y*dist_y) )
+#
+#                
+#                #Calculate Softness for the relative row and column
+#                #then store it in a new array (column) and append the array to
+#                #the row
+#                tempSoftness = brush.getSoftness(radius , dist, self.opacity, self.soft)
+#                
+#                if(not(tempSoftness is None)):
+#                    tempSoftness = ord(tempSoftness)
+#                else:
+#                    tempSoftness = 0
+#                    
+##                #convert to float between 0 and 1
+##                tempSoftness = (tempSoftness/255.0)
+#                
+#                #add column to row
+#                tempRow.append([tempSoftness])
+#                
+#                
+#            
+#            #Append Temporary Row to softnessMask
+#            self.softnessMask.append(tempRow)
 
+    def generateSoftnessMask(self):
+                
+            #new layer
+            tempLayer = Layer('tempLayer', None, self.size, self.size)
+    
+            brush.new(
+            tempLayer.pointer,
+            True,
+            self.shape,
+            self.size,
+            self.opacity,
+            self.soft,
+            self.color[0],
+            self.color[1],
+            self.color[2])
+            
+            #get pixBuf array
+            tempPixelArray = tempLayer.pixbuf.get_pixels_array()
+            
+            #init softnessArray
+            self.softnessMask = []
+            
+            for row in tempPixelArray:
+                tempRow = []
+                for column in row:
+                    tempRow.append([column[3]])
+                    
+                self.softnessMask.append(tempRow)
+                
             
     #returns the precomputed softness for a pixels position
     def getPixelSoftness(self,row,column):
         return self.softnessMask[row][column][0]
+    
+    def pixBufFromPixData(self):
+        pass
+#        #get pixbuf array
+#        pixBufArray = self.layer.pixbuf.get_pixels_array()
+#        
+#        for  i in range(self.brush.height):
+#            for j in range(self.brush.width):
+#                for k in range(3):
+#                    pixBufArray[i][j][k] = 0
+#                pixBufArray[i][j][3] = self.getPixelSoftness(i,j)
+#                print self.getPixelSoftness(i,j) * 255
+#                    
+#        # Redraw expired area.
+#        self.layer.pixbuf = gtk.gdk.pixbuf_new_from_array(pixBufArray, gtk.gdk.COLORSPACE_RGB, 8)
+#
+#        main.documents.active.canvas.redraw_all()
+#        main.documents.active.actions.end([0,0,699,699])
+#        
+#        
+
+    def compositeRBG(self,lowerValue,upperValue,upperValueOpacity):
+        #algorithm for compositing two 8bit color channel values
+        compositedChannel = (upperValueOpacity * upperValue) + ((1 - upperValueOpacity) * lowerValue)
+        return compositedChannel

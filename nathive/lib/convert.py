@@ -27,7 +27,7 @@ def pixbuf_pointer(pixbuf):
 
 
 def hex_rgb(hexcolor):
-
+    
     r = hexcolor[0:2]
     g = hexcolor[2:4]
     b = hexcolor[4:6]
