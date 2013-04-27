@@ -1,3 +1,6 @@
+This is my, work-in-progress, modified version of the Nathive raster editor.  For the original Nathive, visit www.nathive.org.  In this version, I'm attempting to show how raster graphics can be written and stored as expressions in terms of the set of original colors selected by the artist.
+
+The following is the original Nathive ReadMe:
 
 Nathive README
 ==============
