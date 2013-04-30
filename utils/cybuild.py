@@ -44,6 +44,9 @@ head, tail = os.path.split(source)
 name, fileext = os.path.splitext(tail)
 
 # Transcribe to C using the dotcy lib, save to destination.
-script = Script(source)
+try:
+    script = Script(source)
+except:
+    print "source: " + str(source)
 path = os.path.join(destination, '%s.c' % name)
 script.export(path)

@@ -63,16 +63,15 @@ def __over_alpha(ba, fa, fma, 'ccf:c'):
     fa = fa * fma
     return fa + (ba * (255-fa) / 255)
 
-def getOverAlpha(ba, fa, fma, 'ccf:c'):
+def getOverAlpha(ba, fa, 'ff:f'):
     """Calculate alpha for the given alpha values using the over algorithm.
     @ba: Background alpha.
     @fa: Foreground alpha.
     @fma: Foreground master alpha value as float.
     =return: Final background alpha value."""
 
-    if ba == 255: return ba
-    fa = fa * fma
-    return fa + (ba * (255-fa) / 255)
+    if ba == 255.0: return ba
+    return fa + (ba * (255.0-fa) / 255.0)
 
 
 def __sub_color(bv, fv, ba, fa, fma, 'ccccf:c'):

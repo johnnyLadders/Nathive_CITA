@@ -336,7 +336,7 @@ class Brush(PluginTool):
                         thisEntry = thisColumn[-1]
 
                         #combine opacity
-                        combinedOpacity = self.compositeAlpha(pixelSoftness,thisEntry[1],brushOpacity)
+                        combinedOpacity = core.getOverAlpha(float(pixelSoftness),float(thisEntry[1]))
 
                         #if their combined opacities == 255 --> remove the rest of the array and add
                         if(combinedOpacity == 255):
@@ -358,21 +358,6 @@ class Brush(PluginTool):
             
             #increment row number
             rowNum = rowNum + 1
-            
-    def compositeAlpha(self, ba, fa, fma):
-#    """Calculate alpha for the given alpha values using the over algorithm.
-#    @ba: Background alpha.
-#    @fa: Foreground alpha.
-#    @fma: Foreground master alpha value as float.
-#    =return: Final background alpha value."""
-
-#    if ba == 255: return ba
-        if ba == 255: return ba
-#    fa = fa * fma
-        #fa = long(fa * fma)
-        
-#    return fa + (ba * (255-fa) / 255)
-        return fa + (ba * (255 - fa) / 255)
         
     def updateSoftness(self,softness):
         self.soft = int(softness)
