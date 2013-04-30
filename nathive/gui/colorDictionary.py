@@ -338,7 +338,7 @@ class ColorDictionary(object):
                     #final B
                     finalB = self.compositeRGB(finalB,nextB,finalA,nextA,nextAM)
                     #final A
-                    finalA = self.compositeAlpha(finalA,thisPixel[i + 1][1],nextAM)
+                    finalA = core.getOverAlpha(float(finalA),float(thisPixel[i + 1][1]))
 
                     
             
@@ -409,21 +409,6 @@ class ColorDictionary(object):
             print "int((("+ str(bv) + " * " + str(bad) + " * " + str(fadx) + ") + (" + str(fv) + " * " + str(fad) + ")) / (" + str(fad) + " + (" + str(bad) + " * " + str(fadx) + ")) + 0.5)"
             exit()
     
-    def compositeAlpha(self, ba, fa, fma):
-#    """Calculate alpha for the given alpha values using the over algorithm.
-#    @ba: Background alpha.
-#    @fa: Foreground alpha.
-#    @fma: Foreground master alpha value as float.
-#    =return: Final background alpha value."""
-
-#    if ba == 255: return ba
-        if ba == 255: return ba
-#    fa = fa * fma
-        #fa = fa * fma
-                
-#    return fa + (ba * (255-fa) / 255)
-        return fa + (ba * (255 - fa) / 255)
-        
     def updateNewColor(self,newColor):
         #set new color 
         self.newColor = newColor
