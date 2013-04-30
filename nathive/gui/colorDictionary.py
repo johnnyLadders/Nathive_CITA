@@ -306,40 +306,39 @@ class ColorDictionary(object):
             #for each j in range(len(k))
             for j in range(len(pixBufArray[k])):
                 
-                #final R = 0
-                finalR = 0
-                #final G = 0
-                finalG = 0
-                #final B = 0
-                finalB = 0
-                #final A = 0 #as long as this stays zero it will be transparent
-                finalA = 0
+                #initialize pixel values to be set to 0
+                finalR = finalG = finalB = finalA = 0
                 
-                #initialize to first element
-                if(len(pixData[k][j]) != 0):
-                    finalR,finalG,finalB = convert.hex_rgb(self.palette[pixData[k][j][0][0]])
-                    finalA = pixData[k][j][0][1]
+                #handle for current column
+                thisPixel = pixData[k][j]
+                
+                #initialize final values to that of the first element
+                if(len(thisPixel) != 0):
+                    finalR,finalG,finalB = convert.hex_rgb(self.palette[thisPixel[0][0]])
+                    finalA = thisPixel[0][1]
                 
                 #for i in range(len(j) - 1)
-                for i in range(len(pixData[k][j]) - 1):
+                for i in range(len(thisPixel) - 1):
                     
-#                    #i+1R, i+1B, i+1G, i+1A
-                    i1R,i1G,i1B = convert.hex_rgb(self.palette[pixData[k][j][i + 1][0]])
-                    #i+1A
-                    i1A = pixData[k][j][i + 1][1]
-                    #i1AM
-                    i1AM = pixData[k][j][i + 1][2]
+#                    #get RBG of next color entry from it's hex value
+                    nextR,nextG,nextB = convert.hex_rgb(self.palette[thisPixel[i + 1][0]])
+                    
+                    #get alpha value of next entry
+                    nextA = thisPixel[i + 1][1]
+                    
+                    #get master alpha value of next entry
+                    nextAM = thisPixel[i + 1][2]
                     
                     
                     
                     #final R
-                    finalR = self.compositeRGB(finalR,i1R,finalA,i1A,i1AM)
+                    finalR = self.compositeRGB(finalR,nextR,finalA,nextA,nextAM)
                     #final G
-                    finalG = self.compositeRGB(finalG,i1G,finalA,i1A,i1AM)
+                    finalG = self.compositeRGB(finalG,nextG,finalA,nextA,nextAM)
                     #final B
-                    finalB = self.compositeRGB(finalB,i1B,finalA,i1A,i1AM)
+                    finalB = self.compositeRGB(finalB,nextB,finalA,nextA,nextAM)
                     #final A
-                    finalA = self.compositeAlpha(finalA,pixData[k][j][i + 1][1],i1AM)
+                    finalA = self.compositeAlpha(finalA,thisPixel[i + 1][1],nextAM)
 
                     
             
