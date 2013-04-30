@@ -78,11 +78,15 @@ class ColorDictionary(object):
         eventbox.set_size_request(20, False)
         color = gtk.gdk.color_parse('#' + hexcolor)
         eventbox.modify_bg(gtk.STATE_NORMAL, color)
-        eventbox.connect('button-press-event', self.clicked, hexcolor)
+        eventbox.set_name(hexcolor)
+        eventbox.connect('button-press-event', self.clicked)
         self.vbox.pack_start(eventbox, True, True, 0)
 
 
-    def clicked(self, widget, event, hexcolor):
+    def clicked(self, widget, event):
+        
+        #get color of widget which should be it's name
+        widgetColor = widget.get_name()
         
         if(event.type == gtk.gdk._2BUTTON_PRESS):
             
@@ -90,7 +94,7 @@ class ColorDictionary(object):
             self.callingWidget = widget
 
             # Create dialog.
-            self.dialog = gtk.Dialog("Replace #" + str(hexcolor))
+            self.dialog = gtk.Dialog("Replace #" + str(widgetColor))
             self.dialog.set_modal(True)
             self.dialog.set_resizable(False)
             self.box = gtk.VBox(False, 5)
@@ -98,15 +102,13 @@ class ColorDictionary(object):
             self.dialog.vbox.pack_start(self.box)
 
             #set the clicked hexColor "toBeReplaced"
-            self.toBeReplaced = hexcolor
+            self.toBeReplaced = widgetColor
 
             #set new color to old color incase they don't change it
             #this will prevent value errors from being thrown
-            self.newColor = hexcolor
+            self.newColor = widgetColor
 
             #Add color previews
-
-
             #color widget
             self.colorwidget = gtk.HBox(True, 0)
 
@@ -153,7 +155,7 @@ class ColorDictionary(object):
                 self.box,
                 _('New Hex Color'),
                 6,
-                hexcolor,
+                widgetColor,
                 self.updateNewColor)
 
 
@@ -171,7 +173,7 @@ class ColorDictionary(object):
         else:
             
             #set project main color to new color
-            main.color.set_hex(hexcolor)
+            main.color.set_hex(widgetColor)
 
     def addAndShowNewColor(self,hexcolor):
         """Put a color in the colorbar.
@@ -204,57 +206,14 @@ class ColorDictionary(object):
         self.dialog.hide()
         self.dialog.destroy()
         
-#    def replaceColor(self):
-#        
-#        #Try except structure ensures that only valid hex values are used
-#        try:
-#            #This method will throw a value error if not valid hex
-#            newGTKColor = gtk.gdk.color_parse('#' + self.newColor)
-#            
-#            
-#            #remove old color from palette
-#            self.palette.remove(self.toBeReplaced)
-#            
-#            #only continue if newColor insn't already in palette
-#            if(not(self.newColor in self.palette)):
-#                #Change the Color of the Widget in the color dictionary
-#                self.callingWidget.modify_bg(gtk.STATE_NORMAL, newGTKColor)
-#                
-#                #Add the new color to the palette
-#                self.palette.append(self.newColor)
-#                
-#                #set project main color to new color
-#                main.color.set_hex(self.newColor)
-#            
-#            else:
-#                #only continue if new color is not the same as the old color
-#                if(self.newColor != self.toBeReplaced):
-#                    #only remove old color, new color is already in palette
-#                    self.removeSelectedColor()
-#                
-#                
-#            
-#        except:
-#            #If value error is thrown: Don't do anything
-#            pass
-#        
-#        #clear temp colors
-#        self.toBeReplaced = ""
-#        self.newColor = ""
-#        
-#        #close dialog
-#        self.quit()
-        
     def replaceColor(self):
+        
+        print self.palette
         
         #Try except structure ensures that only valid hex values are used
         try:
             #This method will throw a value error if not valid hex
             newGTKColor = gtk.gdk.color_parse('#' + self.newColor)
-            
-#            #remove old color from palette
-#            self.palette.remove(self.toBeReplaced) # leave in for now 
-
             
             #get index of old color
             indexOfOld = self.palette.index(self.toBeReplaced)
@@ -269,20 +228,31 @@ class ColorDictionary(object):
                 
                 #set project main color to new color
                 main.color.set_hex(self.newColor)
+                
+                #set widget name to new color
+                self.callingWidget.set_name(self.newColor)
                  
             else:
+                #get index of old color
+                indexOfOld = self.palette.index(self.toBeReplaced)
+                
                 #only continue if new color is not the same as the old color
                 if(self.newColor != self.toBeReplaced):
+                    #set old color to new value in palette
+                    self.palette[indexOfOld] = self.newColor
+                    
                     #only remove old color, new color is already in palette
-                    self.removeSelectedColor()
+                    self.vbox.remove(self.callingWidget)
 
-           
-                
-            
+                    #set project main color to new color
+                    main.color.set_hex(self.newColor)
+
+                    #refresh gui
+                    self.vbox.show_all()
+                    
         except:
-            #If value error is thrown: Don't do anything
-            pass
-
+            pass #ignore invaid variable entry
+        
         #reevaluate
         self.reevaluate() 
         
@@ -297,7 +267,7 @@ class ColorDictionary(object):
         
         #get pixbuf array
         pixBufArray = main.documents.active.layers.active.pixbuf.get_pixels_array()
-        
+                
         #get pixData
         pixData = main.documents.active.layers.active.pixData
                 
@@ -316,6 +286,7 @@ class ColorDictionary(object):
                 if(len(thisPixel) != 0):
                     finalR,finalG,finalB = convert.hex_rgb(self.palette[thisPixel[0][0]])
                     finalA = thisPixel[0][1]
+                    
                 
                 #for i in range(len(j) - 1)
                 for i in range(len(thisPixel) - 1):
@@ -343,8 +314,7 @@ class ColorDictionary(object):
                     
             
                     
-                #insert into pixBuf Array
-                
+                #insert into pixBuf Array               
                 pixBufArray[k][j][0] = finalR
                 pixBufArray[k][j][1] = finalG
                 pixBufArray[k][j][2] = finalB
@@ -354,6 +324,9 @@ class ColorDictionary(object):
         
         #new pixBuf from array
         main.documents.active.layers.active.pixbuf = gtk.gdk.pixbuf_new_from_array(pixBufArray, gtk.gdk.COLORSPACE_RGB, 8)
+        
+        #update pixbuf pointer
+        main.documents.active.layers.active.update_pointer()
         
         #redraw expired area
         main.documents.active.canvas.redraw_all()
