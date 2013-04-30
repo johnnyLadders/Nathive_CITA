@@ -207,9 +207,7 @@ class ColorDictionary(object):
         self.dialog.destroy()
         
     def replaceColor(self):
-        
-        print self.palette
-        
+                
         #Try except structure ensures that only valid hex values are used
         try:
             #This method will throw a value error if not valid hex
@@ -399,25 +397,31 @@ class ColorDictionary(object):
         if(self.toBeReplaced in self.palette):
             #index of color to be removed
             removedIndex = self.palette.index(self.toBeReplaced)
- 
-            #remove from palette 
-#            self.palette.remove(self.toBeReplaced) #leaving this in for now so 
-#           not to affect the other indecies 
-            
-        #for each color entry: if old --> remove, if index > old --> subtract 1
-        for r in range(len(main.documents.active.layers.active.pixData)):
-            for c in range(len(main.documents.active.layers.active.pixData[r])):
-                for entry in range(len(main.documents.active.layers.active.pixData[r][c])):
-                    if main.documents.active.layers.active.pixData[r][c][entry][0] == removedIndex:
-                        main.documents.active.layers.active.pixData.remove(main.documents.active.layers.active.pixData[r][c][entry][0])
-                        
+             
+#        #for each color entry: if old --> remove, if index > old --> subtract 1
+#        for r in range(len(main.documents.active.layers.active.pixData)):
+#            for c in range(len(main.documents.active.layers.active.pixData[r])):
+#                for entry in range(len(main.documents.active.layers.active.pixData[r][c])):
+#                    if main.documents.active.layers.active.pixData[r][c][entry][0] == removedIndex:
+#                        main.documents.active.layers.active.pixData.remove(main.documents.active.layers.active.pixData[r][c][entry][0])
+#                        
+
+        pixData = main.documents.active.layers.active.pixData
                             
+        for row in pixData:
+            for column in row:
+                for entry in column:
+                    if(entry[0] == removedIndex):
+                        column.remove(entry)
         
         #only remove old color, new color is already in palette
         self.vbox.remove(self.callingWidget)
 
         #set project main color to new color
         main.color.set_hex(self.palette[-1])
+        
+        #reevaluate
+        self.reevaluate()
 
         #refresh gui
         self.vbox.show_all()
