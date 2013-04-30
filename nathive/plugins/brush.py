@@ -315,35 +315,43 @@ class Brush(PluginTool):
             for column in range(xOff,xEnd):
                 
                 #retrieve pre-calculated opacity
-                opacity = self.getPixelSoftness(rowNum,columnNum)
+                pixelSoftness = self.getPixelSoftness(rowNum,columnNum)
+                
+                #handle for this column
+                thisColumn = self.layer.pixData[row][column]
+                
+                #handle for brush opacity
+                brushOpacity = self.opacity
                 
                               
                 
                 #only add if some opacity exists
-                if(opacity != 0):
+                if(pixelSoftness != 0):
                     
-                    #if last element is the same color
-                    if((len(self.layer.pixData[row][column]) != 0) and
-                        (self.layer.pixData[row][column][-1][0] == colorIndex)):
+                    #if column not empty and last element is the same color as current
+                    if((len(thisColumn) != 0) and
+                        (thisColumn[-1][0] == colorIndex)):
+                            
+                        #handle for this colorEntry
+                        thisEntry = thisColumn[-1]
 
                         #combine opacity
-                        #print math.fmod(1.0, self.compositeAlpha(opacity,self.layer.pixData[row][column][-1][1]))
-                        combinedOpacity = self.compositeAlpha(opacity,self.layer.pixData[row][column][-1][1],self.opacity)
+                        combinedOpacity = self.compositeAlpha(pixelSoftness,thisEntry[1],brushOpacity)
 
                         #if their combined opacities == 255 --> remove the rest of the array and add
                         if(combinedOpacity == 255):
-                            self.layer.pixData[row][column] = [[colorIndex,255,self.opacity/100.0]]
+                            thisColumn = [[colorIndex, 255, brushOpacityy/100.0]]
 
                         #else update old opacity
                         else:
-                            self.layer.pixData[row][column][-1][1] = combinedOpacity
-                            self.layer.pixData[row][column][-1][2] = (self.layer.pixData[row][column][-1][2] + self.opacity/100.0)
-                            if(self.layer.pixData[row][column][-1][2] > 1.0): self.layer.pixData[row][column][-1][2] = 1.0
+                            thisEntry[1] = combinedOpacity
+                            thisEntry[2] = (thisColumn[-1][2] + brushOpacity/100.0)
+                            if(thisEntry[2] > 1.0): thisEntry[2] = 1.0
 
 
                     #else just append
                     else:
-                        self.layer.pixData[row][column].append([colorIndex,opacity,self.opacity/100.0])
+                        thisColumn.append([colorIndex,pixelSoftness, brushOpacity/100.0])
 
                 #increment column number
                 columnNum = columnNum + 1

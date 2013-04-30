@@ -375,10 +375,10 @@ class ColorDictionary(object):
         if ba == 0: return fv
 
 #    bad = (f)ba / 255
-        bad = ba / 255
+        bad = ba / 255.0
         
 #    fad = (f)fa / 255 * fma
-        fad = (fa /255) * fma
+        fad = (fa /255.0) * fma
         
 #    fadx = 1 - fad
         fadx = 1 - fad
@@ -387,7 +387,28 @@ class ColorDictionary(object):
 #    #       +-----------+   +------+    +----------------+ +---+
 #    #           back          fore           corrector     round
 
-        return int(((bv * bad * fadx) + (fv * fad)) / (fad + (bad * fadx)) + 0.5)
+        try:
+            retVal = int(((bv * bad * fadx) + (fv * fad)) / (fad + (bad * fadx)) + 0.5)
+            return retVal
+        except:
+            print "Error Compositing RBG"
+            print "---------------------"
+            print "Parameters:"
+            print "bv (Background Channel Value): " + str(bv)
+            print "fv (Foreground Channel Value): " + str(fv)
+            print "ba (Backround Alpha): " + str(ba)
+            print "fa (Foreground Alpha): " + str(fa)
+            print "fma (Foreground Master Alpha Value as Float): " + str(fma)
+            print "---------------------"            
+            print "\nPre-Calculations:"
+            print "bad ((f)ba / 255): " + str(bad)
+            print "fad ((f)fa / 255 * fma): " + str(fad)
+            print "fadx (1 - fad): " + str(fadx)
+            
+            print"\nCalculations:"
+            print "int(((bv * bad * fadx) + (fv * fad)) / (fad + (bad * fadx)) + 0.5)"
+            print "int((("+ str(bv) + " * " + str(bad) + " * " + str(fadx) + ") + (" + str(fv) + " * " + str(fad) + ")) / (" + str(fad) + " + (" + str(bad) + " * " + str(fadx) + ")) + 0.5)"
+            exit()
     
     def compositeAlpha(self, ba, fa, fma):
 #    """Calculate alpha for the given alpha values using the over algorithm.
