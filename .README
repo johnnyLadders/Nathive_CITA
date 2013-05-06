@@ -1,0 +1,99 @@
+This is my, work-in-progress, modified version of the Nathive raster editor.  For the original Nathive, visit www.nathive.org.  In this version, I'm attempting to show how raster graphics can be written and stored as expressions in terms of the set of original colors selected by the artist.
+
+The following is the original Nathive ReadMe:
+
+Nathive README
+==============
+
+Attention
+---------
+
+This project is in beta phase, so the most core work is done but it is still
+unfit for the end user.
+
+Most of the following is not available in the stand-alone package, to get all
+the development options please download the full source tarball.
+
+
+Install from source requires
+----------------------------
+
+- gcc
+- python-dev / python-devel
+- dpkg (for DEB packaging)
+- rpmbuild / rpmdevtools (for RPM packaging)
+
+
+Install
+-------
+
+1) Open terminal in downloaded folder.
+2) Type "make" as user to compile the low-level libraries.
+3) Type "make deb" or "make rpm" as root to create a binary package.
+4) Double-click on the package to install into your distro.
+
+
+Other make options
+------------------
+
+Type "make install" as root to old-school install way, then the installation
+will not be registered in any database and you can not uninstall automatically
+or handle versions.
+
+Type "make unpyc" as user to delete unnecesary .pyc files. don't worry about,
+it's automatic when you perform an installation. (Tip: launch Python with -B
+option to avoid generating .pyc files when you are hacking)
+
+Type "make source" as user to delete unneeded files and clean code before commit
+in the version control system or redistribute as source.
+
+Type "make spaces" as user to reformat all .py files with spaced indentation.
+This also perform a trailing space/line remove.
+
+Type "make tabs" as user to reformat all .py files with tabbed indentation,
+useful if you think tab is explicit and space groups are implicit, and you like
+Python Zen over PEP08. This also perform a trailing space/line remove.
+
+Type "make gettext" to extract all language strings from source, generate a
+Gettext template and update .po files. This option needs gettext package
+installed.
+
+Type "make docs" to regenerate project documentation mixing code docstrings and
+additional info. This option needs sphinx package installed.
+
+
+Command line options
+--------------------
+
+python nathive.py [options] [files]
+nathive [options] [files]
+
+For now the unique option available is '-d' or '--debug' to create a method
+tracking log.
+
+
+License
+-------
+
+Nathive is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Nathive is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Nathive.  If not, see <http://www.gnu.org/licenses/>.
+
+The supplied GNU GPL copy is the file called COPYING.
+
+
+We are online!
+--------------
+
+Visit <http://www.nathive.org> to download the latest source, submit bugs,
+ideas, or code, also you can find many ways to contact Nathive people.
+See you there!
